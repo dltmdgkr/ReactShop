@@ -13,7 +13,6 @@ export const Main = () => {
   // useEffect(() => {
   //   (async function getProducts() {
   //     const data = await getData();
-  //     console.log(data);
   //     setProducts(data);
   //   })();
 
