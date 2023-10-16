@@ -1,0 +1,11 @@
+.searchList {
+  position: absolute;
+  z-index: 999;
+
+  background: #fff;
+  color: #000;
+}
+
+.searchList > li {
+  margin-bottom: 5px;
+}

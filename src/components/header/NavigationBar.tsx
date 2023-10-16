@@ -2,17 +2,45 @@ import styles from "./NavigationBar.module.css";
 import { BsSun } from "react-icons/bs";
 import { LiaShoppingBagSolid } from "react-icons/lia";
 import { BiMoon } from "react-icons/bi";
-import { useTheme } from "../../ThemeContextProvider";
+import { useTheme } from "../../context/ThemeContextProvider";
 import { Link } from "react-router-dom";
+import { SearchBar } from "./SearchBar";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { ProductType } from "../../types/product.type";
 
 const NavigationBar = () => {
-  const { darkMode, toggleTheme } = useTheme() as {
-    darkMode: boolean;
-    toggleTheme: () => void;
-  };
+  const { darkMode, toggleTheme } = useTheme();
+  const [data, setData] = useState<ProductType[]>([]);
 
   // const contextValue = useContext(ThemeContext);
   // const { darkMode, toggleTheme } = contextValue ?? { darkMode: false, toggleTheme: () => {} };
+
+  const getData = async (): Promise<ProductType[]> => {
+    try {
+      const response = await axios.get("https://fakestoreapi.com/products");
+      const data = response.data.map((item: { id: number; title: string }) => ({
+        id: item.id,
+        title: item.title,
+      }));
+      return data;
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getData();
+        setData(result);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div
@@ -20,8 +48,7 @@ const NavigationBar = () => {
         darkMode ? styles.darkMode : styles.lightMode
       }`}
     >
-      {/* <div className={darkMode ? styles.darkMode : styles.lightMode}> */}
-      <div className={`flex w-full xl:container xl:m-auto `}>
+      <div className="flex w-full xl:container xl:m-auto">
         <div className="flex-none">
           <button className="btn btn-square btn-ghost">
             <svg
@@ -62,9 +89,12 @@ const NavigationBar = () => {
             <BiMoon />
           </button>
         )}
-        <button>
-          <LiaShoppingBagSolid />
-        </button>
+        <SearchBar searchDataList={data} />
+        <Link to="/cart">
+          <button>
+            <LiaShoppingBagSolid />
+          </button>
+        </Link>
       </div>
     </div>
   );

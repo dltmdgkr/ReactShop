@@ -6,10 +6,18 @@ interface ThemeContextProps {
   toggleTheme?: () => void;
 }
 
-// export const ThemeContext = createContext();
-export const ThemeContext = createContext<
-  { darkMode: boolean; toggleTheme: () => void } | undefined
->(undefined);
+interface ThemeState {
+  darkMode: boolean;
+  toggleTheme: () => void;
+}
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const initialTheme = {
+  darkMode: false,
+  toggleTheme: () => {},
+};
+
+export const ThemeContext = createContext<ThemeState>(initialTheme);
 
 export const ThemeContextProvider = ({ children }: ThemeContextProps) => {
   const [darkMode, setDarkMode] = useState(false);
@@ -25,7 +33,7 @@ export const ThemeContextProvider = ({ children }: ThemeContextProps) => {
   );
 };
 
-//eslint-disable-next-line
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
   return useContext(ThemeContext);
 };
