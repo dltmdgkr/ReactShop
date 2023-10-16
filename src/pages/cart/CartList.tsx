@@ -14,10 +14,19 @@ interface CartListProps {
   id: number;
   image: string;
   title: string;
+  totalPrice: number;
   price: number;
+  setTotalPrice: (price: number) => void;
 }
 
-export const CartList = ({ id, image, title, price }: CartListProps) => {
+export const CartList = ({
+  id,
+  image,
+  title,
+  price,
+  totalPrice,
+  setTotalPrice,
+}: CartListProps) => {
   const [cartItemList, setCartItemList] =
     useRecoilState<ProductType[]>(cartState);
   const { product }: { product: ProductType | null } = useGetProductDetail({
@@ -46,6 +55,7 @@ export const CartList = ({ id, image, title, price }: CartListProps) => {
 
   const handlePlusCount = () => {
     setCount(count + 1);
+    setTotalPrice(totalPrice + price);
     addProductToShoppingBasket(product);
   };
 
@@ -55,6 +65,7 @@ export const CartList = ({ id, image, title, price }: CartListProps) => {
       removeProductFromShoppingBasket(id);
     } else {
       setCount(count - 1);
+      setTotalPrice(totalPrice + price);
       substractProductFromShoppingBasket(product);
     }
   };

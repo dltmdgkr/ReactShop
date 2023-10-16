@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useRecoilState } from "recoil";
 import { cartState } from "../../atoms/cartState";
 import { CartList } from "./CartList";
@@ -10,11 +11,13 @@ import { Modal } from "../../components/modal/Modal";
 export const Cart = () => {
   const [cartItemList, setCartItemList] = useRecoilState(cartState);
   const [openModal, setOpenModal] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     const cartData = getProductsFromShoppingBasket();
     setCartItemList(cartData || []);
-  }, [setCartItemList]);
+    setTotalPrice(handleTotalPrice());
+  }, [totalPrice]);
 
   const handleTotalPrice = () => {
     let itemPrice = 0;
@@ -55,6 +58,8 @@ export const Cart = () => {
                 <CartList
                   key={`key-${p.id}`}
                   id={p.id}
+                  totalPrice={totalPrice}
+                  setTotalPrice={setTotalPrice}
                   price={p.price}
                   title={p.title}
                   image={p.image}
