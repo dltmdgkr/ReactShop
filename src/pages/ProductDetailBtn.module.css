@@ -1,0 +1,9 @@
+.darkMode-btn {
+  border-color: #d1d5db;
+  color: #d1d5db;
+}
+
+.lightMode-btn {
+  background: #fff;
+  color: #000;
+}

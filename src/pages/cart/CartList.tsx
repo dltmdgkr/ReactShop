@@ -72,7 +72,6 @@ export const CartList = ({
 
   const handleRemove = (id: number) => {
     setCartItemList(cartItemList.filter((el) => el.id !== id));
-    location.reload();
   };
 
   return (

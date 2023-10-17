@@ -1,13 +1,12 @@
 .darkMode {
   background-color: #4b5563;
-  color: #fff;
+  color: #a6adbb;
+  border: none;
+  cursor: pointer;
 }
 
 .lightMode {
   background-color: #f3f4f6;
   color: #000;
+  cursor: pointer;
 }
-
-/* background {
-  #2a303c
-} */

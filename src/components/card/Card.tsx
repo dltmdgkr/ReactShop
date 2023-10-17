@@ -17,7 +17,9 @@ export const Card = ({ id, title, price, image }: CardProps) => {
   return (
     <div
       onClick={handleClick}
-      className="card card-bordered border-gray-200 dark:border-gray-800 card-compact lg:card-normal"
+      className={`card card-bordered border-gray-200 dark:border-gray-800 card-compact lg:card-normal  ${
+        darkMode ? styles.darkMode : styles.lightMode
+      }`}
       id={id.toString()}
     >
       <figure className="flex h-80 bg-white overflow-hidden">

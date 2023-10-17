@@ -4,8 +4,12 @@ import { ProductType } from "../types/product.type";
 import { useRecoilState } from "recoil";
 import { cartState } from "../atoms/cartState";
 import { addProductToShoppingBasket } from "../utils/shoppingBasket";
+import { useTheme } from "../context/ThemeContextProvider";
+import productStyles from "./ProductDetail.module.css";
+import btnStyles from "./ProductDetailBtn.module.css";
 
 export const ProductDetail = () => {
+  const { darkMode } = useTheme();
   const { id } = useParams();
   const [cartItemList, setCartItemList] = useRecoilState(cartState);
   const { product }: { product: ProductType | null } = useGetProductDetail({
@@ -22,7 +26,11 @@ export const ProductDetail = () => {
   };
 
   return (
-    <section className="main pt-16">
+    <section
+      className={`main pt-16 ${
+        darkMode ? productStyles.darkMode : productStyles.lightMode
+      }`}
+    >
       <section className="pt-4 lg:pt-5 pb-4 lg:pb-8 px-4 xl:px-2 xl:container mx-auto">
         <div>
           <div className="lg:flex lg:items-center mt-6 md:mt-14 px-2 lg:px-0">
@@ -42,7 +50,14 @@ export const ProductDetail = () => {
                 <button className="btn btn-primary" onClick={() => addToCart()}>
                   장바구니에 담기
                 </button>
-                <Link to="/cart" className="btn btn-outline ml-1">
+                <Link
+                  to="/cart"
+                  className={`btn ${
+                    darkMode
+                      ? btnStyles["darkMode-btn"]
+                      : btnStyles["lightMode-btn"]
+                  }`}
+                >
                   장바구니로 이동
                 </Link>
               </div>

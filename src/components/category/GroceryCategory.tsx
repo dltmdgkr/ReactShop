@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
+import { useTheme } from "../../context/ThemeContextProvider";
 
 export const GroceryCategory = () => {
+  const { darkMode } = useTheme();
   return (
-    <>
+    <div
+      style={{
+        background: darkMode ? "#2a303c" : "#fff",
+        color: darkMode ? "#9badbb" : "#000",
+      }}
+    >
       <h1 className="mt-20 sm:mt-28 text-center text-4xl sm:text-9xl font-bold">
         404
       </h1>
@@ -16,6 +23,6 @@ export const GroceryCategory = () => {
           </button>
         </div>
       </Link>
-    </>
+    </div>
   );
 };
