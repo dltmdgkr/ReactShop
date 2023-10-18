@@ -7,14 +7,23 @@ import { addProductToShoppingBasket } from "../utils/shoppingBasket";
 import { useTheme } from "../context/ThemeContextProvider";
 import productStyles from "./ProductDetail.module.css";
 import btnStyles from "./ProductDetailBtn.module.css";
+import { totalCountState } from "../atoms/totalCountState";
+import { useEffect, useState } from "react";
 
 export const ProductDetail = () => {
   const { darkMode } = useTheme();
   const { id } = useParams();
   const [cartItemList, setCartItemList] = useRecoilState(cartState);
+  const [totalCount, setTotalCount] = useRecoilState<number>(totalCountState);
+  const [count] = useState(0);
   const { product }: { product: ProductType | null } = useGetProductDetail({
     id: Number(id),
   });
+
+  useEffect(() => {
+    setTotalCount(totalCount + count);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [totalCount]);
 
   if (!product) return null;
 
@@ -23,8 +32,8 @@ export const ProductDetail = () => {
       setCartItemList((prevState) => [...prevState, product]);
     }
     addProductToShoppingBasket(product);
+    setTotalCount(totalCount + 1);
   };
-
   return (
     <section
       className={`main pt-16 ${
@@ -45,7 +54,7 @@ export const ProductDetail = () => {
               <h1 className="card-title">{product.title}</h1>
               <p>{product.description}</p>
               <div className="flex items-center mt-3"></div>
-              <p className="mt-2 mb-4 text-3xl">${product.price}</p>
+              <p className="mt-2 mb-4 text-3xl">${Math.floor(product.price)}</p>
               <div className="card-actions">
                 <button className="btn btn-primary" onClick={() => addToCart()}>
                   장바구니에 담기

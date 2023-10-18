@@ -6,13 +6,26 @@ import { Footer } from "./components/footer/Footer.tsx";
 import { RecoilRoot } from "recoil";
 import "./App.css";
 import "./index.css";
+import { useState } from "react";
+import { MenuModal } from "./components/modal/MenuModal.tsx";
 
 function App() {
+  const [openModal, setOpenModal] = useState(false);
+
+  const showModal = () => {
+    setOpenModal(true);
+  };
+
+  const closeModal = () => {
+    setOpenModal(false);
+  };
+
   return (
     <RecoilRoot>
       <ThemeContextProvider>
         <BrowserRouter>
-          <NavigationBar />
+          {openModal && <MenuModal closeModal={closeModal} />}
+          <NavigationBar showModal={showModal} />
           <PageNavigator />
           <Footer />
         </BrowserRouter>

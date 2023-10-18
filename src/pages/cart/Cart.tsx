@@ -6,15 +6,17 @@ import { TotalCart } from "./TotalCart";
 import { useEffect, useState } from "react";
 import { getProductsFromShoppingBasket } from "../../utils/shoppingBasket";
 import { Link } from "react-router-dom";
-import { Modal } from "../../components/modal/Modal";
+import { OrderModal } from "../../components/modal/OrderModal";
 import styles from "./Cart.module.css";
 import { useTheme } from "../../context/ThemeContextProvider";
+import { totalCountState } from "../../atoms/totalCountState";
 
 export const Cart = () => {
   const { darkMode } = useTheme();
   const [cartItemList, setCartItemList] = useRecoilState(cartState);
   const [openModal, setOpenModal] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [, setTotalCount] = useRecoilState(totalCountState);
 
   useEffect(() => {
     const cartData = getProductsFromShoppingBasket();
@@ -41,6 +43,7 @@ export const Cart = () => {
   const clearLocalStorage = () => {
     setOpenModal(false);
     setCartItemList([]);
+    setTotalCount(0);
     localStorage.removeItem("shoppingBasket");
   };
 
@@ -77,7 +80,7 @@ export const Cart = () => {
           </div>
         </div>
         {openModal && (
-          <Modal
+          <OrderModal
             closeModal={closeModal}
             clearLocalStorage={clearLocalStorage}
           />

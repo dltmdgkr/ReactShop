@@ -1,4 +1,8 @@
-.searchList {
+.search-ico {
+  display: none;
+}
+
+.search-list {
   position: absolute;
   z-index: 999;
 
@@ -6,6 +10,12 @@
   color: #000;
 }
 
-.searchList > li {
+.search-list > li {
   margin-bottom: 5px;
+}
+
+@media screen and (max-width: 639px) {
+  .search-ico {
+    display: block;
+  }
 }

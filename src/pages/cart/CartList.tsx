@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { ProductType } from "../../types/product.type";
 import { useGetProductDetail } from "../../hooks/useGetProductDetail";
 import { Link } from "react-router-dom";
+import { totalCountState } from "../../atoms/totalCountState";
 
 interface CartListProps {
   id: number;
@@ -46,6 +47,7 @@ export const CartList = ({
 
   const [count, setCount] = useState(initialCount);
   const [itemPrice, setItemPrice] = useState(price * count);
+  const [totalCount, setTotalCount] = useRecoilState(totalCountState);
 
   useEffect(() => {
     setItemPrice(price * count);
@@ -56,6 +58,7 @@ export const CartList = ({
   const handlePlusCount = () => {
     setCount(count + 1);
     setTotalPrice(totalPrice + price);
+    setTotalCount(totalCount + count);
     addProductToShoppingBasket(product);
   };
 
@@ -63,9 +66,11 @@ export const CartList = ({
     if (count <= 1) {
       handleRemove(id);
       removeProductFromShoppingBasket(id);
+      setTotalCount(totalCount + count);
     } else {
       setCount(count - 1);
       setTotalPrice(totalPrice + price);
+      setTotalCount(totalCount + count);
       substractProductFromShoppingBasket(product);
     }
   };
@@ -86,7 +91,7 @@ export const CartList = ({
           <Link to={`/product/${id}`}>
             <h2>{title}</h2>
           </Link>
-          <p>${itemPrice}</p>
+          <p>${Math.floor(itemPrice)}</p>
           <div className="card-actions">
             <div className="btn-group">
               <button

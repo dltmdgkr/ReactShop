@@ -37,7 +37,7 @@ export const Card = ({ id, title, price, image }: CardProps) => {
           {title}
         </h2>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">${price}</button>
+          <button className="btn btn-primary">${Math.floor(price)}</button>
         </div>
       </div>
     </div>

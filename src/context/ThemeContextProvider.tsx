@@ -36,7 +36,6 @@ export const ThemeContextProvider = ({ children }: ThemeContextProps) => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    console.log("savedTheme", savedTheme);
     if (savedTheme === "dark" || savedTheme === "light") {
       setDarkMode(savedTheme === "dark");
     }

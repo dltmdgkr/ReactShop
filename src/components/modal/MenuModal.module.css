@@ -1,0 +1,80 @@
+.darkMode {
+  position: absolute;
+  z-index: 1023;
+  width: 100%;
+  height: 100vh;
+  background: rgba(42, 48, 60, 0.5);
+  cursor: pointer;
+  color: #fff;
+}
+
+.dark-menu-list {
+  position: absolute;
+  width: 280px;
+  height: 100vh;
+  background: #2a303c;
+  animation-name: darkMove;
+  animation-duration: 0.3s;
+}
+
+@keyframes darkMove {
+  from {
+    transform: translateX(-100px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.dark-menu-list > li {
+  padding: 16px;
+  font-size: 16px;
+}
+
+.dark-menu-list > li:hover {
+  background: #575e67;
+  border-radius: 5px;
+}
+
+.lightMode {
+  position: absolute;
+  z-index: 1023;
+  width: 100%;
+  height: 100vh;
+  background: rgba(173, 175, 179, 0.5);
+  cursor: pointer;
+}
+
+.lightMode > ul {
+  width: 280px;
+  height: 100vh;
+  background: #fff;
+  color: #000;
+}
+
+.light-menu-list {
+  width: 280px;
+  height: 100vh;
+  background: #fff;
+  animation-name: lightMove;
+  animation-duration: 0.3s;
+}
+
+@keyframes lightMove {
+  from {
+    transform: translateX(-100px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.light-menu-list > li {
+  padding: 16px;
+  font-size: 16px;
+}
+
+.light-menu-list > li:hover {
+  background: rgb(248, 246, 246);
+  border-radius: 5px;
+}

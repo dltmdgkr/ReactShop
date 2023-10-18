@@ -1,6 +1,6 @@
-import { atom } from "recoil";
+import { RecoilState, atom } from "recoil";
 
-export const totalPriceState = atom({
+export const totalPriceState: RecoilState<number> = atom({
   key: "totalPriceState",
   default: 0,
 });

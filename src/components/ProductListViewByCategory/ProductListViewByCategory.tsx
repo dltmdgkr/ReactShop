@@ -16,7 +16,7 @@ export const ProductListViewByCategory = ({ title, porductList }: Props) => {
         <h2 className="mb-5 lg:mb-8 text-3xl lg:text-4xl text-center font-bold">
           {title}
         </h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 item_list">
+        <div className={`${styles["scroll-x"]} ${styles.item_list}`}>
           {porductList.map((product) => (
             <Card
               key={product.id}

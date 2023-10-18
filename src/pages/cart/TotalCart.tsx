@@ -23,7 +23,9 @@ export const TotalCart = ({ showModal }: TotalCartProps) => {
 
   return (
     <div className="self-start shrink-0 flex items-center mt-10 mb-20">
-      <span className="text-xl md:text-2xl">총 : ${totalPrice}</span>
+      <span className="text-xl md:text-2xl">
+        총 : ${Math.floor(totalPrice)}
+      </span>
       <button onClick={showModal} className="modal-button btn btn-primary ml-5">
         구매하기
       </button>

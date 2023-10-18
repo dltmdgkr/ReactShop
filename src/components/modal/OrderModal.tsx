@@ -1,11 +1,14 @@
-import styles from "./Modal.module.css";
+import styles from "./OrderModal.module.css";
 
-interface ModalProps {
+interface OrderModalProps {
   closeModal: () => void;
   clearLocalStorage: () => void;
 }
 
-export const Modal = ({ closeModal, clearLocalStorage }: ModalProps) => {
+export const OrderModal = ({
+  closeModal,
+  clearLocalStorage,
+}: OrderModalProps) => {
   return (
     <div className={styles.modal}>
       <div className={`${styles["modal-box"]} modal-box`}>
