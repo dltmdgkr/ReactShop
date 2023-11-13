@@ -13,18 +13,14 @@ function App() {
   const [openModal, setOpenModal] = useState(false);
 
   const showModal = () => {
-    setOpenModal(true);
-  };
-
-  const closeModal = () => {
-    setOpenModal(false);
+    setOpenModal((prev) => !prev);
   };
 
   return (
     <RecoilRoot>
       <ThemeContextProvider>
         <BrowserRouter>
-          {openModal && <MenuModal closeModal={closeModal} />}
+          <MenuModal openModal={openModal} setOpenModal={setOpenModal} />
           <NavigationBar showModal={showModal} />
           <PageNavigator />
           <Footer />
