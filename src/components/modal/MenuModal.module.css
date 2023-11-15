@@ -60,14 +60,14 @@
   animation-duration: 0.3s;
 }
 
-@keyframes lightMove {
+/* @keyframes lightMove {
   from {
     transform: translateX(-100px);
   }
   to {
     transform: translateX(0);
   }
-}
+} */
 
 .light-menu-list > li {
   padding: 16px;
