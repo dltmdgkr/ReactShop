@@ -1,22 +1,16 @@
-import { useNavigate } from "react-router-dom";
 import { ProductType } from "../../types/product.type";
 import styles from "./Card.module.css";
 import { useTheme } from "../../context/ThemeContextProvider";
+import { Link } from "react-router-dom";
 
 interface CardProps extends Omit<ProductType, "description"> {}
 
 export const Card = ({ id, title, price, image }: CardProps) => {
-  const navigate = useNavigate();
-
   const { darkMode } = useTheme();
 
-  const handleClick = () => {
-    navigate(`/product/${id}`);
-  };
-
   return (
-    <div
-      onClick={handleClick}
+    <Link
+      to={`/product/${id}`}
       className={`card card-bordered border-gray-200 dark:border-gray-800 card-compact lg:card-normal  ${
         darkMode ? styles.darkMode : styles.lightMode
       }`}
@@ -25,7 +19,7 @@ export const Card = ({ id, title, price, image }: CardProps) => {
       <figure className="flex h-80 bg-white overflow-hidden">
         <img
           src={image}
-          alt="Shoes"
+          alt={title}
           className="transition-transform duration-300"
           style={{ width: "150px", height: "150px" }}
         />
@@ -40,6 +34,6 @@ export const Card = ({ id, title, price, image }: CardProps) => {
           <button className="btn btn-primary">${Math.floor(price)}</button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };

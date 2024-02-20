@@ -6,11 +6,27 @@ interface Props {
 }
 
 export const JeweleryCategory = ({ limit }: Props) => {
-  const { productList } = useGetProductListByCategory({
+  const { productList, loading } = useGetProductListByCategory({
     category: "jewelery",
     limit,
   });
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img src="/images/loading.gif" alt="loading" />
+      </div>
+    );
+  }
+
   return (
-    <ProductListViewByCategory title="액세서리" porductList={productList} />
+    <ProductListViewByCategory title="액세서리" productList={productList} />
   );
 };

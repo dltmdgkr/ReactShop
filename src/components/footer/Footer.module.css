@@ -1,6 +1,6 @@
 .darkMode {
   text-align: center;
-  height: 50vh;
+  height: 30vh;
   padding: 40px;
   background: #242933;
   color: #819fb6;
@@ -8,7 +8,7 @@
 
 .lightMode {
   text-align: center;
-  height: 50vh;
+  height: 30vh;
   padding: 40px;
   background: #f2f2f2;
   color: #000;

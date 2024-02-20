@@ -40,6 +40,7 @@ export const SearchBar = ({ searchDataList }: SearchBarProps) => {
             className={
               "opacity-0 sm:opacity-100 sm:static sm:flex w-full input input-ghost focus:outline-0 rounded-none sm:rounded bg-gray-300 dark:bg-gray-600 !text-gray-800 dark:!text-white sm:transform-none transition-all js-searchInput"
             }
+            value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
         </div>

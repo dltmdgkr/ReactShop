@@ -1,14 +1,14 @@
-import { Card } from "../card/Card";
+import { Card } from "../product/Card";
 import { ProductType } from "../../types/product.type";
 import { useTheme } from "../../context/ThemeContextProvider";
 import styles from "./ProductListViewByCategory.module.css";
 
 interface Props {
   title: string;
-  porductList: ProductType[];
+  productList: ProductType[];
 }
 
-export const ProductListViewByCategory = ({ title, porductList }: Props) => {
+export const ProductListViewByCategory = ({ title, productList }: Props) => {
   const { darkMode } = useTheme();
   return (
     <div className={darkMode ? styles.darkMode : styles.lightMode}>
@@ -17,7 +17,7 @@ export const ProductListViewByCategory = ({ title, porductList }: Props) => {
           {title}
         </h2>
         <div className={`${styles["scroll-x"]} ${styles.item_list}`}>
-          {porductList.map((product) => (
+          {productList.map((product) => (
             <Card
               key={product.id}
               id={product.id}

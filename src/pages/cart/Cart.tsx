@@ -48,7 +48,9 @@ export const Cart = () => {
   };
 
   return (
-    <div className={darkMode ? styles.darkMode : styles.lightMode}>
+    <div
+      className={`main pt-16 ${darkMode ? styles.darkMode : styles.lightMode}`}
+    >
       <section className="pt-4 lg:pt-5 pb-4 lg:pb-8 px-4 xl:px-2 xl:container mx-auto">
         <div className="mt-6 md:mt-14 px-2 lg:px-0">
           <div className="lg:flex justify-between mb-20">

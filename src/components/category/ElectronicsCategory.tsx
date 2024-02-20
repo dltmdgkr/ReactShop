@@ -6,9 +6,25 @@ interface Props {
 }
 
 export const ElectronicsCategory = ({ limit }: Props) => {
-  const { productList } = useGetProductListByCategory({
+  const { productList, loading } = useGetProductListByCategory({
     category: "electronics",
     limit,
   });
-  return <ProductListViewByCategory title="디지털" porductList={productList} />;
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img src="/images/loading.gif" alt="loading" />
+      </div>
+    );
+  }
+
+  return <ProductListViewByCategory title="디지털" productList={productList} />;
 };

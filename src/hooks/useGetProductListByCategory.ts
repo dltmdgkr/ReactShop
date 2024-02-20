@@ -12,6 +12,7 @@ export const useGetProductListByCategory = ({
   limit,
 }: getProductListHookInputType) => {
   const [productList, setProductList] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const getProductListByCategory = async () => {
     await axios
@@ -22,6 +23,7 @@ export const useGetProductListByCategory = ({
       )
       .then((res) => {
         setProductList(res.data);
+        setLoading(false);
         return res.data;
       })
       .catch((err) => console.log(err));
@@ -32,5 +34,5 @@ export const useGetProductListByCategory = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
 
-  return { productList };
+  return { productList, loading };
 };
