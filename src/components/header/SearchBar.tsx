@@ -1,5 +1,4 @@
 import styles from "./SearchBar.module.css";
-import { AiOutlineSearch } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import { ProductType } from "../../types/product.type";
 import { Link } from "react-router-dom";
@@ -27,7 +26,19 @@ export const SearchBar = ({ searchDataList }: SearchBarProps) => {
     <>
       <div className={styles.dropdown}>
         <p onClick={toggleSearchBar}>
-          <AiOutlineSearch className={styles["search-ico"]} />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={`h-6 w-6 stroke-gray-700 dark:stroke-white ${styles["search-ico"]}`}
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
         </p>
         <div
           className={`${styles["search-bar"]} ${

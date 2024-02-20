@@ -1,5 +1,3 @@
-// import { useEffect, useState } from "react";
-// import { getData } from "../api/productApi";
 import { FashionCategory } from "../components/category/FashionCategory";
 import { JeweleryCategory } from "../components/category/JeweleryCategory";
 import { ElectronicsCategory } from "../components/category/ElectronicsCategory";

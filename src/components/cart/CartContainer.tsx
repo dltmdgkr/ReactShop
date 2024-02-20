@@ -6,12 +6,12 @@ import { TotalCart } from "./TotalCart";
 import { useEffect, useState } from "react";
 import { getProductsFromShoppingBasket } from "../../utils/shoppingBasket";
 import { Link } from "react-router-dom";
-import { OrderModal } from "../../components/modal/OrderModal";
-import styles from "./Cart.module.css";
+import { OrderModal } from "../modal/OrderModal";
+import styles from "./CartContainer.module.css";
 import { useTheme } from "../../context/ThemeContextProvider";
 import { totalCountState } from "../../atoms/totalCountState";
 
-export const Cart = () => {
+export const CartContainer = () => {
   const { darkMode } = useTheme();
   const [cartItemList, setCartItemList] = useRecoilState(cartState);
   const [openModal, setOpenModal] = useState(false);

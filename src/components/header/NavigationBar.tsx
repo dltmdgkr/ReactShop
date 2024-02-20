@@ -26,6 +26,7 @@ const NavigationBar = ({ showModal }: NavigationBarProps) => {
         id: item.id,
         title: item.title,
       }));
+
       return data;
     } catch (err) {
       console.log(err);
@@ -42,6 +43,7 @@ const NavigationBar = ({ showModal }: NavigationBarProps) => {
         console.log(error);
       }
     };
+
     fetchData();
   }, []);
 
@@ -109,7 +111,6 @@ const NavigationBar = ({ showModal }: NavigationBarProps) => {
         ) : (
           <button onClick={() => toggleTheme()}>
             <svg
-              onClick={() => toggleTheme()}
               className="swap-on fill-black w-7 h-7"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -138,7 +139,6 @@ const NavigationBar = ({ showModal }: NavigationBarProps) => {
               {totalCount}
             </span>
           </Link>
-          <span className={styles.num}>{totalCount}</span>
         </div>
       </div>
     </div>

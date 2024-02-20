@@ -1,5 +1,5 @@
 import { useGetProductListByCategory } from "../../hooks/useGetProductListByCategory";
-import { ProductListViewByCategory } from "../ProductListViewByCategory/ProductListViewByCategory";
+import { ProductListViewByCategory } from "../productListViewByCategory/ProductListViewByCategory";
 
 interface Props {
   limit?: number;

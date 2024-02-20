@@ -5,6 +5,7 @@ export const GroceryCategory = () => {
   const { darkMode } = useTheme();
   return (
     <div
+      className="main pt-16"
       style={{
         background: darkMode ? "#2a303c" : "#fff",
         color: darkMode ? "#9badbb" : "#000",
