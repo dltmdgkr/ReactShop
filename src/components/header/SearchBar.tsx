@@ -28,7 +28,7 @@ export const SearchBar = ({ searchDataList }: SearchBarProps) => {
         <p onClick={toggleSearchBar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={`h-6 w-6 stroke-gray-700 dark:stroke-white ${styles["search-ico"]}`}
+            className={`h-6 w-6 m-2 stroke-gray-100 dark:stroke-white ${styles["search-ico"]}`}
             fill="none"
             viewBox="0 0 24 24"
           >

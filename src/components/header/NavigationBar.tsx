@@ -124,7 +124,7 @@ const NavigationBar = ({ showModal }: NavigationBarProps) => {
           <Link to="/cart">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 stroke-gray-700 dark:stroke-white"
+              className="h-6 w-6 stroke-gray-100 dark:stroke-white"
               fill="none"
               viewBox="0 0 24 24"
             >
