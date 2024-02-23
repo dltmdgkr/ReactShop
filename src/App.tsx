@@ -8,6 +8,9 @@ import "./index.css";
 import { useState } from "react";
 import { MenuModal } from "./components/modal/MenuModal.tsx";
 import { Router } from "./router/router.tsx";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
@@ -17,16 +20,18 @@ function App() {
   };
 
   return (
-    <RecoilRoot>
-      <ThemeContextProvider>
-        <BrowserRouter>
-          <MenuModal openModal={openModal} setOpenModal={setOpenModal} />
-          <NavigationBar showModal={showModal} />
-          <Router />
-          <Footer />
-        </BrowserRouter>
-      </ThemeContextProvider>
-    </RecoilRoot>
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <ThemeContextProvider>
+          <BrowserRouter>
+            <MenuModal openModal={openModal} setOpenModal={setOpenModal} />
+            <NavigationBar showModal={showModal} />
+            <Router />
+            <Footer />
+          </BrowserRouter>
+        </ThemeContextProvider>
+      </RecoilRoot>
+    </QueryClientProvider>
   );
 }
 

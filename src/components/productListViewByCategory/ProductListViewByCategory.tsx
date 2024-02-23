@@ -1,15 +1,44 @@
 import { Card } from "../product/Card";
-import { ProductType } from "../../types/product.type";
 import { useTheme } from "../../context/ThemeContextProvider";
 import styles from "./ProductListViewByCategory.module.css";
+import { useQuery } from "react-query";
+import { fetchCategory } from "../../api/api";
+import { ProductType } from "../../types/product.type";
 
 interface Props {
   title: string;
-  productList: ProductType[];
+  category: string;
+  categories: string[];
+  limit: number;
 }
 
-export const ProductListViewByCategory = ({ title, productList }: Props) => {
+export const ProductListViewByCategory = ({
+  title,
+  category,
+  categories,
+  limit,
+}: Props) => {
   const { darkMode } = useTheme();
+  const { isLoading, data } = useQuery<ProductType[]>(
+    ["productViewByCategory", category],
+    () => fetchCategory(category, categories, limit)
+  );
+
+  if (isLoading || !data) {
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img src="/images/loading.gif" alt="loading" />
+      </div>
+    );
+  }
+
   return (
     <div className={darkMode ? styles.darkMode : styles.lightMode}>
       <section className="pt-6 lg:pt-12 pb-4 lg:pb-8 px-4 xl:px-2 mt-10 xl:container mx-auto">
@@ -17,7 +46,7 @@ export const ProductListViewByCategory = ({ title, productList }: Props) => {
           {title}
         </h2>
         <div className={`${styles["scroll-x"]} ${styles.item_list}`}>
-          {productList.map((product) => (
+          {data?.map((product) => (
             <Card
               key={product.id}
               id={product.id}
