@@ -11,7 +11,7 @@ export const Main = () => {
   return (
     <main className={darkMode ? styles.darkMode : styles.lightMode}>
       <Slider />
-      <FashionCategory category="men's clothing" limit={4} />
+      <FashionCategory limit={4} />
       <JeweleryCategory limit={4} />
       <ElectronicsCategory limit={4} />
     </main>

@@ -8,20 +8,18 @@ import { ProductType } from "../../types/product.type";
 interface Props {
   title: string;
   category: string;
-  categories: string[];
   limit: number;
 }
 
 export const ProductListViewByCategory = ({
   title,
   category,
-  categories,
   limit,
 }: Props) => {
   const { darkMode } = useTheme();
   const { isLoading, data } = useQuery<ProductType[]>(
     ["productViewByCategory", category],
-    () => fetchCategory(category, categories, limit)
+    () => fetchCategory(category, limit)
   );
 
   if (isLoading || !data) {
