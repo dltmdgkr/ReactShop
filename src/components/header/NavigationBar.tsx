@@ -2,12 +2,11 @@ import styles from "./NavigationBar.module.css";
 import { useTheme } from "../../context/ThemeContextProvider";
 import { Link } from "react-router-dom";
 import { SearchBar } from "./SearchBar";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { ProductType } from "../../types/product.type";
-import { useRecoilState } from "recoil";
+import { useEffect } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { cartState } from "../../atoms/cartState";
 import { totalCountState } from "../../atoms/totalCountState";
+import { productsList } from "../../atoms/prouducts";
 
 interface NavigationBarProps {
   showModal: () => void;
@@ -15,37 +14,9 @@ interface NavigationBarProps {
 
 const NavigationBar = ({ showModal }: NavigationBarProps) => {
   const { darkMode, toggleTheme } = useTheme();
-  const [data, setData] = useState<ProductType[]>([]);
+  const data = useRecoilValue(productsList);
   const [cartItemList] = useRecoilState(cartState);
   const [totalCount, setTotalCount] = useRecoilState(totalCountState);
-
-  const getData = async (): Promise<ProductType[]> => {
-    try {
-      const response = await axios.get("https://fakestoreapi.com/products");
-      const data = response.data.map((item: { id: number; title: string }) => ({
-        id: item.id,
-        title: item.title,
-      }));
-
-      return data;
-    } catch (err) {
-      console.log(err);
-      return [];
-    }
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await getData();
-        setData(result);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   useEffect(() => {
     setTotalCount(handleTotalCount());

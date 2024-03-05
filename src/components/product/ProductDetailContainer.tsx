@@ -1,34 +1,34 @@
 import { Link, useParams } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContextProvider";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValueLoadable } from "recoil";
 import { cartState } from "../../atoms/cartState";
 import { totalCountState } from "../../atoms/totalCountState";
 import { useEffect, useState } from "react";
 import btnStyles from "./ProductDetailContainerBtn.module.css";
-import { ProductType } from "../../types/product.type";
-import { useGetProductDetail } from "../../hooks/useGetProductDetail";
 import { addProductToShoppingBasket } from "../../utils/shoppingBasket";
 import productStyles from "./ProductDetailContainer.module.css";
+import { productsList } from "../../atoms/prouducts";
 
 export default function ProductDetailContainer() {
   const { darkMode } = useTheme();
-  const { id } = useParams();
+  const productParam = useParams();
   const [cartItemList, setCartItemList] = useRecoilState(cartState);
   const [totalCount, setTotalCount] = useRecoilState<number>(totalCountState);
   const [count] = useState(0);
-  const {
-    product,
-    loading,
-  }: { product: ProductType | null; loading: boolean } = useGetProductDetail({
-    id: Number(id),
-  });
+  const productsLoadable = useRecoilValueLoadable(productsList);
+  const products =
+    "hasValue" === productsLoadable.state ? productsLoadable.contents : [];
+  const product = products.filter(
+    (item: { id: { toString: () => string | undefined } }) =>
+      productParam.id === item.id.toString()
+  )[0];
 
   useEffect(() => {
     setTotalCount(totalCount + count);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [totalCount]);
 
-  if (loading) {
+  if ("loading" === productsLoadable.state) {
     return (
       <div
         style={{
