@@ -56,7 +56,7 @@ export const CartContainer = () => {
           <div className="lg:flex justify-between mb-20">
             <div>
               {cartItemList === null || cartItemList.length === 0 ? (
-                <div style={{ width: "500px", height: "300px" }}>
+                <div>
                   <h1 className="text-2xl">장바구니에 물품이 없습니다.</h1>
                   <Link to={"/"}>
                     <button className="btn btn-primary mt-10">
