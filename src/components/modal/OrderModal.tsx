@@ -12,8 +12,10 @@ export const OrderModal = ({
   return (
     <div className={styles.modal}>
       <div className={`${styles["modal-box"]} modal-box`}>
-        <h3 className="font-bold text-lg">정말로 구매하시겠습니까?</h3>
-        <p className="py-4">장바구니의 모든 상품들이 삭제됩니다.</p>
+        <h3 className="font-bold text-lg text-black">
+          정말로 구매하시겠습니까?
+        </h3>
+        <p className="py-4 text-black">장바구니의 모든 상품들이 삭제됩니다.</p>
         <div className="modal-action">
           <button onClick={clearLocalStorage} className="btn btn-primary">
             네

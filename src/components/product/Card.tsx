@@ -11,9 +11,10 @@ export const Card = ({ id, title, price, image }: CardProps) => {
   return (
     <Link
       to={`/product/${id}`}
-      className={`card card-bordered border-gray-200 dark:border-gray-800 card-compact lg:card-normal  ${
+      className={`w-full max-w-full card card-bordered border-gray-200 dark:border-gray-800 card-compact lg:card-normal flex-shrink-0 ${
         darkMode ? styles.darkMode : styles.lightMode
       }`}
+      style={{ maxWidth: "400px" }}
       id={id.toString()}
     >
       <figure className="flex h-80 bg-white overflow-hidden">
@@ -27,9 +28,7 @@ export const Card = ({ id, title, price, image }: CardProps) => {
       <div
         className={`card-body ${darkMode ? styles.darkMode : styles.lightMode}`}
       >
-        <h2 className="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops">
-          {title}
-        </h2>
+        <h2 style={{ whiteSpace: "normal" }}>{title}</h2>
         <div className="card-actions justify-end">
           <button className="btn btn-primary">${Math.floor(price)}</button>
         </div>

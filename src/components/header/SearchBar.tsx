@@ -2,12 +2,14 @@ import styles from "./SearchBar.module.css";
 import { useState, useEffect } from "react";
 import { ProductType } from "../../types/product.type";
 import { Link } from "react-router-dom";
+import { useTheme } from "../../context/ThemeContextProvider";
 
 interface SearchBarProps {
   searchDataList: ProductType[];
 }
 
 export const SearchBar = ({ searchDataList }: SearchBarProps) => {
+  const { darkMode } = useTheme();
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState(searchDataList);
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
@@ -28,7 +30,9 @@ export const SearchBar = ({ searchDataList }: SearchBarProps) => {
         <p onClick={toggleSearchBar}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={`h-6 w-6 m-2 stroke-gray-100 dark:stroke-white ${styles["search-ico"]}`}
+            className={`h-6 w-6 m-2 ${styles["search-ico"]} ${
+              darkMode ? "stroke-white" : "stroke-black"
+            }`}
             fill="none"
             viewBox="0 0 24 24"
           >
@@ -43,28 +47,32 @@ export const SearchBar = ({ searchDataList }: SearchBarProps) => {
         <input
           type="text"
           placeholder="검색"
-          className={`input input-ghost focus:outline-0 rounded-none sm:rounded bg-gray-300 dark:bg-gray-600 !text-gray-800 dark:!text-white ${
+          className={`input input-ghost focus:outline-0 rounded-none sm:rounded bg-gray-200 dark:bg-gray-600 !text-gray-800 dark:!text-white ${
             styles["search-bar"]
           } ${isSearchBarVisible ? styles["search-bar-visible"] : ""}`}
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
         <ul className={searchValue ? styles["search-list"] : ""}>
-          {searchValue === ""
-            ? ""
-            : filteredData.map((data) => (
-                <li key={data.id}>
-                  <Link
-                    to={`/product/${data.id}`}
-                    onClick={() => {
-                      setSearchValue("");
-                      setIsSearchBarVisible(false);
-                    }}
-                  >
-                    {data.title}
-                  </Link>
-                </li>
-              ))}
+          {searchValue === "" ? (
+            ""
+          ) : filteredData.length === 0 ? (
+            <li style={{ width: "100vw" }}>검색 결과가 없습니다.</li>
+          ) : (
+            filteredData.map((data) => (
+              <li key={data.id}>
+                <Link
+                  to={`/product/${data.id}`}
+                  onClick={() => {
+                    setSearchValue("");
+                    setIsSearchBarVisible(false);
+                  }}
+                >
+                  {data.title}
+                </Link>
+              </li>
+            ))
+          )}
         </ul>
       </div>
     </>

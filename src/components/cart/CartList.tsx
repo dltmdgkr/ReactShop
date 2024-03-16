@@ -83,8 +83,11 @@ export const CartList = ({
     <div>
       <div className="lg:flex lg:items-center mt-4 px-2 lg:px-0">
         <Link to={`/product/${id}`}>
-          <figure className="w-56 min-w-full flex-shrink-0 rounded-2xl overflow-hidden px-4 py-4 bg-white">
-            <img src={image} alt="상품이미지" />
+          <figure
+            className="w-full max-w-full flex-shrink-0 rounded-2xl overflow-hidden px-4 py-4 bg-white"
+            style={{ maxHeight: "250px", maxWidth: "150px" }}
+          >
+            <img src={image} alt="상품이미지" className="w-full" />
           </figure>
         </Link>
         <div className="card-body px-1 lg:px-12">

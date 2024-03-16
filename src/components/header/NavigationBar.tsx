@@ -42,7 +42,9 @@ const NavigationBar = ({ showModal }: NavigationBarProps) => {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              className="inline-block w-5 h-5 stroke-current"
+              className={`inline-block w-5 h-5 stroke-current ${
+                darkMode ? "stroke-white" : "stroke-black"
+              }`}
             >
               <path
                 strokeLinecap="round"
@@ -53,7 +55,9 @@ const NavigationBar = ({ showModal }: NavigationBarProps) => {
             </svg>
           </button>
         </div>
-        <div className="flex-1">
+        <div
+          className={`flex-1 ${darkMode ? styles.darkMode : styles.lightMode}`}
+        >
           <Link to="/" className={styles.nav}>
             React Shop
           </Link>
@@ -95,7 +99,9 @@ const NavigationBar = ({ showModal }: NavigationBarProps) => {
           <Link to="/cart">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 stroke-gray-100 dark:stroke-white"
+              className={`h-6 w-6 ${
+                darkMode ? "stroke-white" : "stroke-black"
+              }`}
               fill="none"
               viewBox="0 0 24 24"
             >

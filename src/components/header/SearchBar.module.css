@@ -5,10 +5,10 @@
 .search-list {
   position: absolute;
   height: 30vh;
-  overflow-y: scroll;
   z-index: 999;
+  overflow-y: scroll;
 
-  background: #fff;
+  background: rgb(250, 250, 248);
   color: #000;
 }
 
